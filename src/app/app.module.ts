@@ -5,11 +5,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PriceQuoteComponent } from './price-quote/price-quote.component';
+import { CandlestickChartComponent } from './candlestick-chart/candlestick-chart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PriceQuoteComponent
+    PriceQuoteComponent,
+    CandlestickChartComponent
   ],
   imports: [
     BrowserModule,
