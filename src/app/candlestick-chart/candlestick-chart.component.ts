@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PriceQuote } from '../price-quote/price-quote';
+import { PriceQuoteService } from '../price-quote/price-quote.service';
 
 @Component({
   selector: 'app-candlestick-chart',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CandlestickChartComponent implements OnInit {
 
-  constructor() { }
+  priceQuote : PriceQuote;
 
-  ngOnInit() {
+  constructor(private priceQuoteService: PriceQuoteService) { }
+
+  ngOnInit() { 
+     this.priceQuoteService.getQuotes().subscribe((data: PriceQuote)=>this.priceQuote = data);
   }
+
+  
 
 }
