@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PriceQuoteComponent } from './price-quote/price-quote.component';
 import { CandlestickChartComponent } from './candlestick-chart/candlestick-chart.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { CandlestickChartComponent } from './candlestick-chart/candlestick-chart
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FlexLayoutModule 
 
   ],
   providers: [],
