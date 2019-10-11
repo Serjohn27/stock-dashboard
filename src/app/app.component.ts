@@ -14,8 +14,7 @@ export class AppComponent implements OnInit{
    constructor(private priceQuoteService: PriceQuoteService){}
 
   ngOnInit(): void {
-    this.priceQuoteService.getQuotes().subscribe((data: PriceQuote)=> this.priceQuote=data );
-    console.log(this.priceQuote);
+  
   }
   title = 'stock-dashboard';
   
