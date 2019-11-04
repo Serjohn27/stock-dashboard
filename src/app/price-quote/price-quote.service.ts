@@ -7,7 +7,7 @@ import { PriceQuote } from './price-quote';
 })
 export class PriceQuoteService {
  
-  endpoint= './assets/data/OBLN.json';
+  endpoint= './assets/data/OBLN2.json';
 
   constructor(private http: HttpClient) { }
 
