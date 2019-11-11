@@ -14,6 +14,8 @@
     {"close":138.9,"datetime":1477285200000,"high":140.0,"low":135.0,"open":135.7,"volume":10059},
     {"close":144.6,"datetime":1477371600000,"high":144.9,"low":136.901,"open":138.584,"volume":16218},
     {"close":131.8,"datetime":1477458000000,"high":145.7,"low":129.6,"open":145.7,"volume":14157},
-    {"close":131.0,"datetime":1477544400000,"high":133.9,"low":128.1,"open":128.1,"volume":10240}  
+    {"close":131.0,"datetime":1477544400000,"high":133.9,"low":128.1,"open":128.1,"volume":10240},
+    {"close":138.0,"datetime":1477630800000,"high":142.4,"low":129.3,"open":132.3,"volume":9542}
+
 ],"empty":false,"symbol":"OBLN","date":null
 }
