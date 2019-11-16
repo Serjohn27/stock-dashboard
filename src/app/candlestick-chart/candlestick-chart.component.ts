@@ -31,13 +31,13 @@ export class CandlestickChartComponent implements OnInit, OnChanges {
 
     d3.select('svg').remove();
 
-    const margin = { top: 30, right: 70, bottom: 30, left: 70 };
+    const margin = { top: 40, right: 70, bottom: 40, left: 70 };
 
-    const width = 720;
-    const height = 400;
+    const width = 960;
+    const height = 600;
 
-    const innerWidth = width - margin.left - margin.right;
-    const innerHeight = height - margin.top - margin.bottom;
+    const contentWidth = width - margin.left - margin.right;
+    const contentHeight = height - margin.top - margin.bottom;
 
     let candles = this.data.candles;
 
@@ -45,7 +45,10 @@ export class CandlestickChartComponent implements OnInit, OnChanges {
       .append("svg")
       .attr("width", width)
       .attr("height", height)
-      .style('background-color', '#9cb5aa')
+      .style('background-color', 'white');
+
+
+    const g = svg
       .append('g')
       .attr('transform', `translate(${margin.left}, ${margin.right})`);
 
@@ -58,12 +61,11 @@ export class CandlestickChartComponent implements OnInit, OnChanges {
     // Create the scale
     const yScale = d3.scaleLinear()
       .domain([ymin, ymax])
-      .range([innerHeight, 0]);
+      .range([contentHeight, 0]);
 
     const yAxis = d3.axisLeft(yScale);
 
-    svg
-      .attr('transform', `translate(${margin.left}, ${margin.top})`)
+    g.attr('transform', `translate(${margin.left}, ${margin.top})`)
       .call(yAxis);
 
 
@@ -77,22 +79,29 @@ export class CandlestickChartComponent implements OnInit, OnChanges {
     // Date Scale    
     const xScale = d3.scaleTime()
       .domain([xmin, xmax])
-      .range([0, innerWidth]);
+      .range([0, contentWidth]);
 
 
     const xAxis = d3.axisBottom().scale(xScale);
 
-    const gX = svg.append("g")
+    const gX = g.append("g")
       .attr("class", "axis x-axis")
-      .attr('transform', `translate(0, ${innerHeight})`)
+      .attr('transform', `translate(0, ${contentHeight})`)
       .call(xAxis);
 
 
-    svg.selectAll('rect').data(candles)
+    console.log(this.data.candles[0].close)
+
+    svg.selectAll('.bar')
+      .data(this.data.candles)
       .enter().append('rect')
-      .attr('y', d => yScale(d.close))
-      .attr('width', d => xScale(d.datetime))
-      .attr('height', yScale.bandwidth);
+      .attr('class', 'bar')
+      .attr('x', d => xScale(d.datetime))
+      .attr('y',d => yScale(Math.max(d.open, d.close)) )
+      .attr('width', 10)
+      .attr('height', d => (d.open === d.close) ? 1 : yScale(Math.min(d.open, d.close))-yScale(Math.max(d.open, d.close)))
+      .attr("fill", d => (d.open === d.close) ? "silver" : (d.open > d.close) ? "red" : "green")
+      ;
 
 
   }
