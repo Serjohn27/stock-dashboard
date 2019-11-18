@@ -44,24 +44,21 @@ export class CandlestickChartComponent implements OnInit, OnChanges {
     const svg = d3.select("#candlestick-chart-container")
       .append("svg")
       .attr("width", width)
-      .attr("height", height)
-      .style('background-color', 'white');
+      .attr("height", height);
 
 
-    const g = svg
-      .append('g')
-      .attr('transform', `translate(${margin.left}, ${margin.right})`);
+    const g = svg.append('g')
+      .attr('transform', `translate(${margin.left}, ${margin.left})`);
+      
 
 
     // Find min and max for closing prices to use in y axis       
     const yExtent = d3.extent(candles, candle=>candle.close);
-
-
-    // Create the scale
-    const yScale = d3.scaleLinear(yExtent,[contentHeight, 0]);
+    const yScale = d3.scaleLinear(yExtent,[contentHeight, 0]).nice();
     const yAxis = d3.axisLeft(yScale);
 
     g.attr('transform', `translate(${margin.left}, ${margin.top})`)
+    .attr("class", "axis y-axis")
       .call(yAxis);
 
 
@@ -71,11 +68,7 @@ export class CandlestickChartComponent implements OnInit, OnChanges {
     // new version takes domain and range arrays as argument
     const xScale = d3.scaleTime(xExtent,[0, contentWidth]);
     let xBand = d3.scaleBand().domain(d3.range(-1, candles.length)).range([0, contentWidth]).padding(0.5);
-    console.log('X band' + xBand.bandwidth());
-
-
     const xAxis = d3.axisBottom().scale(xScale);
-
     const gX = g.append("g")
       .attr("class", "axis x-axis")
       .attr('transform', `translate(0, ${contentHeight})`)
@@ -92,17 +85,17 @@ export class CandlestickChartComponent implements OnInit, OnChanges {
       .attr('height', d => (d.open === d.close) ? 1 : yScale(Math.min(d.open, d.close))-yScale(Math.max(d.open, d.close)))
       .attr("fill", d => (d.open === d.close) ? "silver" : (d.open > d.close) ? "red" : "green");
 
-	// draw high and low
-  let stems = svg.selectAll("g.line")
-  .data(this.data.candles)
-  .enter()
-  .append("line")
-  .attr("class", "stem")
-  .attr("x1", d => xScale(d.datetime) - xBand.bandwidth()/2)
-  .attr("x2", d => xScale(d.datetime) - xBand.bandwidth()/2)
-  .attr("y1", d => yScale(d.high))
-  .attr("y2", d => yScale(d.low))
-  .attr("stroke", d => (d.open === d.close) ? "white" : (d.open > d.close) ? "red" : "green");
+      // draw high and low
+      let stems = svg.selectAll("g.line")
+      .data(this.data.candles)
+      .enter()
+      .append("line")
+      .attr("class", "stem")
+      .attr("x1", d => xScale(d.datetime) - xBand.bandwidth()/2)
+      .attr("x2", d => xScale(d.datetime) - xBand.bandwidth()/2)
+      .attr("y1", d => yScale(d.high))
+      .attr("y2", d => yScale(d.low))
+      .attr("stroke", d => (d.open === d.close) ? "white" : (d.open > d.close) ? "red" : "green");
 
 
   }
