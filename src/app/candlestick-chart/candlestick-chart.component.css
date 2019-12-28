@@ -21,4 +21,10 @@
     fill: brown;
   }
 
+  .volumebars{
+    fill-opacity: 0.5;
+    opacity: 0.3;
+    stroke-opacity: 0.5;
+  }
+
 

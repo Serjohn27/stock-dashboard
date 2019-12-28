@@ -27,10 +27,12 @@ export class CandlestickChartComponent implements OnInit, OnChanges {
   }
 
 
+
+
   drawChart() {
 
-    const FIVE_HOURS = 1000*60*60*5;
-    const ONE_DAY = 1000*60*60*24;
+    const FIVE_HOURS = 1000*60*60*4;
+    const ONE_DAY = 1000*60*60*48;
 
     d3.select('svg').remove();
 
@@ -51,23 +53,14 @@ export class CandlestickChartComponent implements OnInit, OnChanges {
       .append('g')
       .attr('transform', `translate(${margin.left}, ${margin.top})`);
     
-    candles.forEach(candle=>{console.log(candle)
-     console.log(new Date(candle.datetime));
-    });
-
-
     // X Axis with Dates
     const xMin = d3.min(candles.map(candle=>(candle.datetime-FIVE_HOURS)));
     const xMax = d3.max(candles.map(candle=>candle.datetime-FIVE_HOURS));
     // Date Scale    
-    // new version takes domain and range arrays as argument
     // adapt the d3 time scale in a discontinuous scale that skips weekends
    const xScale = fc.scaleDiscontinuous(d3.scaleTime([new Date(xMin-ONE_DAY),new Date(xMax+ONE_DAY)], [0, contentWidth]))
      .discontinuityProvider(fc.discontinuitySkipWeekends());
-  //  const xScale = d3.scaleTime([xMin-ONE_DAY, xMax+ONE_DAY], [0, contentWidth]);
-    let xBand = d3.scaleBand().domain(d3.range(-1, candles.length)).range([0, contentWidth]).padding(0.1)
-    //let xBand = d3.scaleBand().domain(d3.range(0, candles.length)).range([margin.left, width - margin.right]).padding(0.3);
-
+    let xBand = d3.scaleBand().domain(d3.range(-1, candles.length)).range([0, contentWidth]).padding(0.3)
     
     const xAxis = d3.axisBottom()
       .scale(xScale)
@@ -91,11 +84,6 @@ export class CandlestickChartComponent implements OnInit, OnChanges {
       .attr("transform", `translate(${contentWidth}, 0)`)
       .call(yAxis);
 
-    this.data.candles.forEach(candle => {
-      console.log(new Date(candle.datetime));
-      console.log('Position x ' + xScale(new Date(candle.datetime)));
-    });
-
 
     svg.selectAll('.bar')
       .data(this.data.candles)
@@ -106,6 +94,24 @@ export class CandlestickChartComponent implements OnInit, OnChanges {
       .attr('width', xBand.bandwidth() / 2)
       .attr('height', d => (d.open === d.close) ? 1 : yScale(Math.min(d.open, d.close)) - yScale(Math.max(d.open, d.close)))
       .attr("fill", d => (d.open === d.close) ? "silver" : (d.open > d.close) ? "red" : "green");
+
+      const volumeMin = d3.min(candles.map(candle=>candle.volume));
+      const volumeMax= d3.max(candles.map(candle=>candle.volume));
+      const volumeScale = d3.scaleLinear([volumeMin,volumeMax], [contentHeight, 0]);
+
+      candles.forEach(candle=>console.log('volume '+ candle.volume));
+
+      svg.selectAll('.volumebars')
+      .data(this.data.candles)
+      .enter().append('rect')
+      .attr('class', 'volumebars')
+      .attr('x', d=> xScale(new Date(d.datetime+(FIVE_HOURS))) - xBand.bandwidth()/2)
+      .attr('y', d=>volumeScale(d.volume))
+      .attr('width', xBand.bandwidth() / 2)
+      .attr('height',d=> contentHeight-volumeScale(d.volume))
+      .attr("fill", d => (d.open === d.close) ? "silver" : (d.open > d.close) ? "red" : "green")
+      .attr("fill-opacity","0.3");
+
 
       // draw high and low
       let stems = svg.selectAll("g.line")
@@ -118,6 +124,7 @@ export class CandlestickChartComponent implements OnInit, OnChanges {
       .attr("y1", d => yScale(d.high))
       .attr("y2", d => yScale(d.low))
       .attr("stroke", d => (d.open === d.close) ? "gray" : (d.open > d.close) ? "red" : "green");
+
 
 
   }
