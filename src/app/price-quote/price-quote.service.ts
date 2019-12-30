@@ -12,7 +12,7 @@ export class PriceQuoteService {
   constructor(private http: HttpClient) { }
 
    getQuotes(){
-     console.log('Getting price quote from '+this.endpoint );
+     console.log('Getting price quote from '+ this.endpoint );
      return this.http.get<PriceQuote>(this.endpoint);
    }
 }

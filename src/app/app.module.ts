@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { PriceQuoteComponent } from './price-quote/price-quote.component';
 import { CandlestickChartComponent } from './candlestick-chart/candlestick-chart.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -18,8 +19,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FlexLayoutModule 
-
+    FlexLayoutModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

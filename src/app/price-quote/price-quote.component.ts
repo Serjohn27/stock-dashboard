@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PriceQuoteService } from './price-quote.service';
 import { PriceQuote } from './price-quote';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-price-quote',
@@ -9,12 +10,12 @@ import { PriceQuote } from './price-quote';
 })
 export class PriceQuoteComponent implements OnInit {
 
-  priceQuote : PriceQuote;
+  data: Observable<PriceQuote>;
 
   constructor(private priceQuoteService: PriceQuoteService) { }
 
-  ngOnInit() { 
-     this.priceQuoteService.getQuotes().subscribe((data: PriceQuote)=>this.priceQuote = data);
+  ngOnInit(): void {
+    this.data = this.priceQuoteService.getQuotes();
   }
 
 }

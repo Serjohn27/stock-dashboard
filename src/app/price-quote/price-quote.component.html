@@ -1,1 +1,12 @@
-<p>price-quote works! {{priceQuote | json }}</p>
+<div fxLayout="row">
+    <div fxLayout="column" fxFlexOffset="5" fxFlex="35" style="margin-top: 40px;">
+        <div fxLayout="row">
+            <input type="text" class="search-bar">
+            <button mat-raised-button color="primary">Search</button>
+        </div>
+    </div>
+
+    <div fxLayout="column" fxFlex="60">
+        <app-candlestick-chart [data]="data | async"></app-candlestick-chart>
+    </div>
+</div>
