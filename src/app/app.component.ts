@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { PriceQuoteService } from './price-quote/price-quote.service';
 
 
 @Component({
@@ -11,7 +10,7 @@ export class AppComponent implements OnInit{
   
 
 
-   constructor(private priceQuoteService: PriceQuoteService){}
+   constructor(){}
 
   ngOnInit(): void {
 

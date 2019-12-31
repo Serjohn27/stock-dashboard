@@ -14,7 +14,7 @@ import * as fc from 'd3fc';
 export class CandlestickChartComponent implements OnInit, OnChanges {
 
   @Input()
-  data: PriceQuote;
+  priceQuote: PriceQuote;
 
   constructor() { }
 
@@ -22,7 +22,7 @@ export class CandlestickChartComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(): void {
-    if (!this.data) { return; }
+    if (!this.priceQuote) { return; }
     this.drawChart();
   }
 
@@ -30,7 +30,7 @@ export class CandlestickChartComponent implements OnInit, OnChanges {
   drawChart() {
 
     const FOUR_HOURS = 1000*60*60*4;
-    const ONE_DAY = 1000*60*60*48;
+    const ONE_DAY = 1000*60*60*24;
 
     d3.select('svg').remove();
 
@@ -42,7 +42,7 @@ export class CandlestickChartComponent implements OnInit, OnChanges {
     const contentWidth = width - margin.left - margin.right;
     const contentHeight = height - margin.top - margin.bottom;
 
-    let candles = this.data.candles;
+    let candles = this.priceQuote.candles;
 
     const svg = d3.select("#candlestick-chart-container")
       .append("svg")
@@ -60,10 +60,13 @@ export class CandlestickChartComponent implements OnInit, OnChanges {
      .discontinuityProvider(fc.discontinuitySkipWeekends());
     let xBand = d3.scaleBand().domain(d3.range(-1, candles.length)).range([0, contentWidth]).padding(0.2)
     
+    
     const xAxis = d3.axisBottom()
       .scale(xScale)
       .tickFormat(d3.timeFormat("%m/%d"))
-      .ticks(10);
+      .ticks(d3.timeDay,this.getDayTickCount());
+
+
 
     const gX = svg.append("g")
       .attr("class", "axis x-axis")
@@ -84,7 +87,7 @@ export class CandlestickChartComponent implements OnInit, OnChanges {
 
 
     svg.selectAll('.bar')
-      .data(this.data.candles)
+      .data(this.priceQuote.candles)
       .enter().append('rect')
       .attr('class', 'bar')
       .attr('x', d => xScale(new Date(d.datetime+(FOUR_HOURS))) - xBand.bandwidth()/2)
@@ -98,7 +101,7 @@ export class CandlestickChartComponent implements OnInit, OnChanges {
       const volumeScale = d3.scaleLinear([volumeMin,volumeMax], [contentHeight, 0]);
 
       svg.selectAll('.volumebars')
-      .data(this.data.candles)
+      .data(this.priceQuote.candles)
       .enter().append('rect')
       .attr('class', 'volumebars')
       .attr('x', d=> xScale(new Date(d.datetime+(FOUR_HOURS))) - xBand.bandwidth()/2)
@@ -106,12 +109,12 @@ export class CandlestickChartComponent implements OnInit, OnChanges {
       .attr('width', xBand.bandwidth() / 2)
       .attr('height',d=> contentHeight-volumeScale(d.volume))
       .attr("fill", d => (d.open === d.close) ? "green" : (d.open > d.close) ? "red" : "green")
-      .attr("fill-opacity","0.3");
+      .attr("fill-opacity","0.1");
 
 
       // draw high and low
       let stems = svg.selectAll("g.line")
-      .data(this.data.candles)
+      .data(this.priceQuote.candles)
       .enter()
       .append("line")
       .attr("class", "stem")
@@ -121,6 +124,26 @@ export class CandlestickChartComponent implements OnInit, OnChanges {
       .attr("y2", d => yScale(d.low))
       .attr("stroke", d => (d.open === d.close) ? "gray" : (d.open > d.close) ? "red" : "green");
 
+  }
+
+   getDayTickCount() {
+         const count = this.priceQuote.candles.length;
+           
+        if(count<31){
+          return 2;
+        }
+        else if(count<61){
+          return 6;
+        }
+        else if(count<91){
+          return 11;
+        }
+        else if(count<121){
+          return 16;
+        }
+        else{
+          return 31;
+        }
   }
 
 }

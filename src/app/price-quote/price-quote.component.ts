@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PriceQuoteService } from './price-quote.service';
 import { PriceQuote } from './price-quote';
 import { Observable } from 'rxjs';
+import { StockStats } from '../stock-stats/stock-stats';
+import { StockStatsService } from '../stock-stats/stock-stats.service';
 
 @Component({
   selector: 'app-price-quote',
@@ -10,12 +12,24 @@ import { Observable } from 'rxjs';
 })
 export class PriceQuoteComponent implements OnInit {
 
-  data: Observable<PriceQuote>;
+  quotes: Observable<PriceQuote>;
+  stats: Observable<StockStats>;
+  ticker: string;
 
-  constructor(private priceQuoteService: PriceQuoteService) { }
+  constructor(private priceQuoteService: PriceQuoteService, private stockStatsService: StockStatsService) { }
 
   ngOnInit(): void {
-    this.data = this.priceQuoteService.getQuotes();
+   
+  }
+
+  searchTicker(ticker: string){
+    this.ticker = ticker;
+    this.quotes = this.priceQuoteService.getQuotes(ticker);
+    this.stats = this.stockStatsService.getStats(ticker);
+  }
+
+  searchTickerByDays(ticker: string, days: string){
+    this.quotes = this.priceQuoteService.getQuotesByDay(ticker,days);
   }
 
 }

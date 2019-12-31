@@ -1,0 +1,48 @@
+<div *ngIf="stockStats">
+    <table>
+        <tr class="table-row">
+            <td class="table-column"><b>Average Volume (3M) : </b></td>
+            <td class="table-column">{{stockStats.averageVolumeLast3M}}</td>
+        </tr>
+        <tr class="table-row">
+            <td class="table-column"><b>Average Volume (6M) : </b></td>
+            <td class="table-column">{{stockStats.averageVolumeLast6M}}</td>
+        </tr>
+        <tr class="table-row">
+            <td class="table-column"><b>Daily Range (3M) : </b></td>
+            <td class="table-column">{{stockStats.dailyRangeLast3M}}</td>
+        </tr>
+        <tr class="table-row">
+            <td class="table-column"><b>Daily Range (6M) : </b></td>
+            <td class="table-column">{{stockStats.dailyRangeLast6M}}</td>
+        </tr>
+        <tr class="table-row">
+            <td class="table-column"><b>Last 3 Month High : </b></td>
+            <td class="table-column">{{stockStats.lastThreeMonthHigh}}</td>
+        </tr>
+        <tr class="table-row">
+            <td class="table-column"><b>Last 3 Month Low : </b></td>
+            <td class="table-column">{{stockStats.lastThreeMonthLow}}</td>
+        </tr>
+        <tr class="table-row">
+            <td class="table-column"><b>200 SMA : </b></td>
+            <td class="table-column">{{stockStats.twoHundredSma}}</td>
+        </tr>
+        <tr class="table-row">
+            <td class="table-column"><b>RSI (14) : </b></td>
+            <td class="table-column">{{stockStats.rsi14 }}</td>
+        </tr>
+        <tr class="table-row">
+            <td class="table-column"><b>VWAP (14 Days) : </b></td>
+            <td class="table-column">{{stockStats.vwap14 }}</td>
+        </tr>
+        <tr class="table-row">
+            <td class="table-column"><b>52 Week High : </b></td>
+            <td class="table-column">{{stockStats.fiftyTwoWeekHigh}}</td>
+        </tr>
+        <tr class="table-row">
+            <td class="table-column"><b>52 Week Low : </b></td>
+            <td class="table-column">{{stockStats.fiftyTwoWeekLow}}</td>
+        </tr>
+    </table>
+</div>

@@ -8,12 +8,14 @@ import { PriceQuoteComponent } from './price-quote/price-quote.component';
 import { CandlestickChartComponent } from './candlestick-chart/candlestick-chart.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
+import { StockStatsComponent } from './stock-stats/stock-stats.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PriceQuoteComponent,
-    CandlestickChartComponent
+    CandlestickChartComponent,
+    StockStatsComponent
   ],
   imports: [
     BrowserModule,
