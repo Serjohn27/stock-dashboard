@@ -1,0 +1,23 @@
+.navbar {
+    height: 80px;
+    background-color: #673ab7;
+    box-shadow: 2px 3px #d1c4e9;
+}
+
+#logo {
+    height: 50px;
+    width: 50px;
+    margin-left: 75px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.logo-text {
+    text-align: center;
+    color: yellow;
+    font-family: sans-serif;
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+}

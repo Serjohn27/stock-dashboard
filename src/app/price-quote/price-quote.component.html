@@ -12,7 +12,7 @@
         </div>
         <div fxLayout="column">
 
-            <h4 *ngIf=ticker>Stats for: {{ticker}}</h4>
+            <h4 *ngIf=ticker>Stats for: {{ticker | uppercase}}</h4>
             <app-stock-stats [stockStats]="stats | async"></app-stock-stats>
         </div>
     </div>

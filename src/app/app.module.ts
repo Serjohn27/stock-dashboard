@@ -9,13 +9,19 @@ import { CandlestickChartComponent } from './candlestick-chart/candlestick-chart
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
 import { StockStatsComponent } from './stock-stats/stock-stats.component';
+import { SearchComponent } from './search/search.component';
+import { NavigationComponent } from './navigation/navigation.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PriceQuoteComponent,
     CandlestickChartComponent,
-    StockStatsComponent
+    StockStatsComponent,
+    SearchComponent,
+    NavigationComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
