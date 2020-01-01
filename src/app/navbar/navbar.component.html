@@ -1,11 +1,16 @@
-<div fxLayout="row" class="navbar">
+<div fxLayout="row" class="navbar" fxLayoutAlign="space-around">
     <div fxLayout="row" fxFlex="30">
         <div fxLayout="row" fxFlex="40">
             <a href='/'><img id="logo" src="../../assets/icons/analysis.svg"></a>
             <a href='/' class="logo-text">Dashboard</a>
         </div>
     </div>
-    <div fxLayout="row">
+    <div fxLayout="row" fxFlex="50">
         <app-navigation></app-navigation>
+    </div>
+    <div fxLayout="row" fxFlex="20">
+        <div fxLayout="column" fxLayoutAlign="center">
+            <app-search-widget></app-search-widget>
+        </div>
     </div>
 </div>

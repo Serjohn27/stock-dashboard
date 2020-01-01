@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { StockStatsComponent } from './stock-stats/stock-stats.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { SearchWidgetComponent } from './search-widget/search-widget.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     CandlestickChartComponent,
     StockStatsComponent,
     NavigationComponent,
-    NavbarComponent
+    NavbarComponent,
+    SearchWidgetComponent
   ],
   imports: [
     BrowserModule,
