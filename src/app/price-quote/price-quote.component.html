@@ -1,14 +1,14 @@
 <div fxLayout="row">
     <div fxLayout="column" fxFlexOffset="5" fxFlex="35" style="margin-top: 40px;" fxLayoutGap="40px">
-        <div fxLayout="row">
+        <!-- <div fxLayout="row">
             <input #tickerInput type="text" class="search-bar">
             <button mat-raised-button color="primary" (click)="searchTicker(tickerInput.value)">Search</button>
-        </div>
-        <div fxLayout="row" fxLayoutGap="20px">
-            <button mat-mini-fab color="accent" (click)="searchTickerByDays(tickerInput.value,30)">1M</button>
-            <button mat-mini-fab color="accent" (click)="searchTickerByDays(tickerInput.value,60)">3M</button>
-            <button mat-mini-fab color="accent" (click)="searchTickerByDays(tickerInput.value,90)">6M</button>
-            <button mat-mini-fab color="accent" (click)="searchTickerByDays(tickerInput.value,120)">9M</button>
+        </div> -->
+        <div *ngIf="ticker!=null" fxLayout="row" fxLayoutGap="20px">
+            <button mat-mini-fab color="accent" (click)="searchTickerByDays(30)">1M</button>
+            <button mat-mini-fab color="accent" (click)="searchTickerByDays(60)">3M</button>
+            <button mat-mini-fab color="accent" (click)="searchTickerByDays(90)">6M</button>
+            <button mat-mini-fab color="accent" (click)="searchTickerByDays(120)">9M</button>
         </div>
         <div fxLayout="column">
 

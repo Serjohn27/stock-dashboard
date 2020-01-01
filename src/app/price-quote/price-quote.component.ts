@@ -34,8 +34,8 @@ export class PriceQuoteComponent implements OnInit {
     this.stats = this.stockStatsService.getStats(ticker);
   }
 
-  searchTickerByDays(ticker: string, days: string) {
-    this.quotes = this.priceQuoteService.getQuotesByDay(ticker, days);
+  searchTickerByDays(days: string) {
+    this.quotes = this.priceQuoteService.getQuotesByDay(this.ticker, days);
   }
 
 }
