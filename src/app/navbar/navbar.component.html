@@ -1,12 +1,20 @@
 <div fxLayout="row" class="navbar" fxLayoutAlign="space-around">
     <div fxLayout="row" fxFlex="30">
-        <div fxLayout="row" fxFlex="40">
+        <div fxLayout="row" fxFlex="30">
             <a href='/'><img id="logo" src="../../assets/icons/analysis.svg"></a>
             <a href='/' class="logo-text">Dashboard</a>
         </div>
     </div>
-    <div fxLayout="row" fxFlex="50">
-        <app-navigation></app-navigation>
+    <div fxLayout="row" fxFlex="60">
+        <div fxLayout="column" fxLayoutAlign="center center">
+            <div fxLayout="row">
+                <button (click)="toggleMenu()" mat-raised-button color="accent">
+                    <img class="button-icon" src="../../assets/icons/lightbulb.svg">
+                    <span class="button-text">Trade Ideas</span>
+                </button>
+            </div>
+        </div>
+
     </div>
     <div fxLayout="row" fxFlex="20">
         <div fxLayout="column" fxLayoutAlign="center">

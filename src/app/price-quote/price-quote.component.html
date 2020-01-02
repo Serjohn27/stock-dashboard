@@ -11,7 +11,6 @@
             <button mat-mini-fab color="accent" (click)="searchTickerByDays(120)">9M</button>
         </div>
         <div fxLayout="column">
-
             <h4 *ngIf=ticker>Stats for: {{ticker | uppercase}}</h4>
             <app-stock-stats [stockStats]="stats | async"></app-stock-stats>
         </div>

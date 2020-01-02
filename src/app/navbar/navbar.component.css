@@ -21,3 +21,13 @@
     font-weight: bold;
     text-decoration: none;
 }
+
+.button-icon {
+    width: 30px;
+    height: 40px;
+}
+
+.button-text {
+    color: purple;
+    font-size: 12px;
+}
