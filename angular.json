@@ -120,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "stock-dashboard"
+    }
+  },
+  "defaultProject": "stock-dashboard",
+  "cli": {
+    "analytics": false
+  }
 }
