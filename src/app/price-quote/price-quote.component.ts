@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { StockStats } from '../stock-stats/stock-stats';
 import { StockStatsService } from '../stock-stats/stock-stats.service';
 import { DataService } from '../services/data.service';
+import { Technicals } from './technicals';
 
 @Component({
   selector: 'app-price-quote',
@@ -14,7 +15,7 @@ import { DataService } from '../services/data.service';
 export class PriceQuoteComponent implements OnInit {
 
   quotes: Observable<PriceQuote>;
-  stats: Observable<StockStats>;
+  technicals: Observable<Technicals>;
   ticker: string;
 
   constructor(private priceQuoteService: PriceQuoteService, private stockStatsService: StockStatsService, private dataService: DataService) { }
@@ -30,12 +31,13 @@ export class PriceQuoteComponent implements OnInit {
 
   searchTicker(ticker: string) {
     this.ticker = ticker;
-    this.quotes = this.priceQuoteService.getQuotes(ticker);
-    this.stats = this.stockStatsService.getStats(ticker);
+    this.quotes = this.priceQuoteService.getQuotes(ticker,'year','1');
+    this.technicals = this.stockStatsService.getTechnicals(ticker);
   }
 
   searchTickerByDays(days: string) {
-    this.quotes = this.priceQuoteService.getQuotesByDay(this.ticker, days);
+    this.quotes = this.priceQuoteService.getQuotes(this.ticker,'day', days);
+    this.technicals = this.stockStatsService.getTechnicals(this.ticker);
   }
 
 }

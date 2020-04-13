@@ -28,7 +28,6 @@ export class CandlestickChartComponent implements OnInit, OnChanges {
 
 
   drawChart() {
-
     const FOUR_HOURS = 1000*60*60*4;
     const ONE_DAY = 1000*60*60*24;
 
@@ -50,7 +49,7 @@ export class CandlestickChartComponent implements OnInit, OnChanges {
       .attr("height", height)
       .append('g')
       .attr('transform', `translate(${margin.left}, ${margin.top})`);
-    
+
     // X Axis with Dates
     const xMin = d3.min(candles.map(candle=>(candle.datetime-FOUR_HOURS)));
     const xMax = d3.max(candles.map(candle=>candle.datetime-FOUR_HOURS));

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { StockStats } from './stock-stats';
 import { Observable } from 'rxjs';
+import { Technicals } from '../price-quote/technicals';
 
 @Component({
   selector: 'app-stock-stats',
@@ -10,7 +11,7 @@ import { Observable } from 'rxjs';
 export class StockStatsComponent implements OnInit, OnChanges {
 
   @Input()
-  stockStats: StockStats;
+  technicals: Technicals;
 
   constructor() { }
 
@@ -19,7 +20,7 @@ export class StockStatsComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(){
-    if (!this.stockStats) { return; }
+    if (!this.technicals) { return; }
   }
 
 }

@@ -1,48 +1,40 @@
-<div *ngIf="stockStats">
+<div *ngIf="technicals">
     <table>
         <tr class="table-row">
             <td class="table-column"><b>Average Volume (3M) : </b></td>
-            <td class="table-column">{{stockStats.averageVolumeLast3M}}</td>
-        </tr>
-        <tr class="table-row">
-            <td class="table-column"><b>Average Volume (6M) : </b></td>
-            <td class="table-column">{{stockStats.averageVolumeLast6M}}</td>
+            <td class="table-column">{{technicals.averageVolume | number}}</td>
         </tr>
         <tr class="table-row">
             <td class="table-column"><b>Daily Range (3M) : </b></td>
-            <td class="table-column">{{stockStats.dailyRangeLast3M}}</td>
+            <td class="table-column">{{technicals.averageDailyRange}} $</td>
         </tr>
         <tr class="table-row">
-            <td class="table-column"><b>Daily Range (6M) : </b></td>
-            <td class="table-column">{{stockStats.dailyRangeLast6M}}</td>
+            <td class="table-column"><b>Stochastics : </b></td>
+            <td class="table-column">{{technicals.stochastics}}</td>
         </tr>
         <tr class="table-row">
-            <td class="table-column"><b>Last 3 Month High : </b></td>
-            <td class="table-column">{{stockStats.lastThreeMonthHigh}}</td>
-        </tr>
-        <tr class="table-row">
-            <td class="table-column"><b>Last 3 Month Low : </b></td>
-            <td class="table-column">{{stockStats.lastThreeMonthLow}}</td>
+            <td class="table-column"><b>50 EMA  : </b></td>
+            <td class="table-column">{{technicals.fiftyEma}}</td>
         </tr>
         <tr class="table-row">
             <td class="table-column"><b>200 SMA : </b></td>
-            <td class="table-column">{{stockStats.twoHundredSma}}</td>
+            <td class="table-column">{{technicals.twoHundredSma}}</td>
         </tr>
         <tr class="table-row">
             <td class="table-column"><b>RSI (14) : </b></td>
-            <td class="table-column">{{stockStats.rsi14 }}</td>
+            <td class="table-column">{{technicals.rsi }}</td>
         </tr>
         <tr class="table-row">
             <td class="table-column"><b>VWAP (14 Days) : </b></td>
-            <td class="table-column">{{stockStats.vwap14 }}</td>
+            <td class="table-column">{{technicals.vwap }}</td>
         </tr>
         <tr class="table-row">
             <td class="table-column"><b>52 Week High : </b></td>
-            <td class="table-column">{{stockStats.fiftyTwoWeekHigh}}</td>
+            <td class="table-column">{{technicals.fiftyTwoWeekHigh}}</td>
         </tr>
         <tr class="table-row">
             <td class="table-column"><b>52 Week Low : </b></td>
-            <td class="table-column">{{stockStats.fiftyTwoWeekLow}}</td>
+            <td class="table-column">{{technicals.fiftyTwoWeekLow}}</td>
         </tr>
     </table>
 </div>

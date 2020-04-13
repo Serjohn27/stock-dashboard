@@ -10,13 +10,13 @@
             <button mat-mini-fab color="accent" (click)="searchTickerByDays(90)">6M</button>
             <button mat-mini-fab color="accent" (click)="searchTickerByDays(120)">9M</button>
         </div>
-        <div fxLayout="column">
+        <div *ngIf="ticker!=null" fxLayout="column">
             <h4 *ngIf=ticker>Stats for: {{ticker | uppercase}}</h4>
-            <app-stock-stats [stockStats]="stats | async"></app-stock-stats>
+            <app-stock-stats [technicals]="technicals | async"></app-stock-stats>
         </div>
     </div>
 
-    <div fxLayout="column" fxFlex="60">
-        <app-candlestick-chart [priceQuote]="quotes | async"></app-candlestick-chart>
+    <div fxLayout=" column " fxFlex="60 ">
+        <app-candlestick-chart [priceQuote]="quotes | async "></app-candlestick-chart>
     </div>
 </div>
