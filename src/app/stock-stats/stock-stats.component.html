@@ -1,6 +1,10 @@
 <div *ngIf="technicals">
     <table>
         <tr class="table-row">
+            <td class="table-column"><b>Last Price : </b></td>
+            <td class="table-column">{{technicals.lastPrice}} $</td>
+        </tr>
+        <tr class="table-row">
             <td class="table-column"><b>Average Volume (3M) : </b></td>
             <td class="table-column">{{technicals.averageVolume | number}}</td>
         </tr>

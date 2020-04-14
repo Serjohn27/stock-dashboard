@@ -35,8 +35,8 @@ export class CandlestickChartComponent implements OnInit, OnChanges {
 
     const margin = { top: 40, right: 60, bottom: 60, left: 80 };
 
-    const width = 920;
-    const height = 500;
+    const width = 720;
+    const height = 480;
 
     const contentWidth = width - margin.left - margin.right;
     const contentHeight = height - margin.top - margin.bottom;
@@ -57,7 +57,7 @@ export class CandlestickChartComponent implements OnInit, OnChanges {
     // adapt the d3 time scale in a discontinuous scale that skips weekends
    const xScale = fc.scaleDiscontinuous(d3.scaleTime([new Date(xMin-ONE_DAY),new Date(xMax+ONE_DAY)], [0, contentWidth]))
      .discontinuityProvider(fc.discontinuitySkipWeekends());
-    let xBand = d3.scaleBand().domain(d3.range(-1, candles.length)).range([0, contentWidth]).padding(0.2)
+    let xBand = d3.scaleBand().domain(d3.range(-1, candles.length)).range([0, contentWidth]).padding(0.1)
     
     
     const xAxis = d3.axisBottom()
@@ -129,7 +129,7 @@ export class CandlestickChartComponent implements OnInit, OnChanges {
          const count = this.priceQuote.candles.length;
            
         if(count<31){
-          return 2;
+          return 3;
         }
         else if(count<61){
           return 6;
