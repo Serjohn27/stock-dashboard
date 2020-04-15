@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -8,13 +9,14 @@ import { DataService } from '../services/data.service';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService,private _router: Router) { }
 
   ngOnInit() {
   }
 
   toggleMenu(){
-      this.dataService.toggleNavigationMenu();
+    this._router.navigate(['/search']);
+     // this.dataService.toggleNavigationMenu();
   }
 
 }
