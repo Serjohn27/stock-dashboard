@@ -1,0 +1,16 @@
+<table *ngIf="technicals" id="search-results">
+    <tr>
+        <th>Symbol</th>
+        <th>Last Price</th>
+        <th>Rsi</th>
+        <th>Average Volume</th>
+        <th>Date</th>
+    </tr>
+    <tr *ngFor="let technical of technicals | orderBy:'rsi':reverse">
+        <td>{{technical.symbol}}</td>
+        <td>{{technical.lastPrice}}</td>
+        <td>{{technical.rsi}}</td>
+        <td>{{technical.averageVolume}}</td>
+        <td>{{technical.date}}</td>
+    </tr>
+</table>

@@ -1,0 +1,31 @@
+<div fxLayout="row" fxFlex="50" fxFlexOffset="5" fxLayoutAlign="left">
+    <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+        <div fxLayout="column" fxLayoutGap="40px">
+            <div fxLayout="row" fxLayoutGap="20px">
+                <label>
+                RSI Is Between 
+
+              </label>
+                <input type="text" formControlName="rsiLow" size="2" required>
+                <label>
+                And:
+              
+              </label>
+                <input type="text" formControlName="rsiHigh" size="2" required>
+            </div>
+
+            <button type="submit">Submit</button>
+
+        </div>
+
+    </form>
+</div>
+
+
+<div fxLayout="row" fxFlex="50" fxFlexOffset="5" fxLayoutAlign="left">
+    <div fxLayout="column">
+        <h3>Search Results</h3>
+        <app-stocklist [technicals]="technicals | async"></app-stocklist>
+    </div>
+
+</div>

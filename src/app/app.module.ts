@@ -12,6 +12,9 @@ import { StockStatsComponent } from './stock-stats/stock-stats.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SearchWidgetComponent } from './search-widget/search-widget.component';
+import { StocklistComponent } from './stocklist/stocklist.component';
+import { TechnicalSearchComponent } from './technical-search/technical-search.component';
+import { OrderModule } from 'ngx-order-pipe';
 
 @NgModule({
   declarations: [
@@ -21,14 +24,17 @@ import { SearchWidgetComponent } from './search-widget/search-widget.component';
     StockStatsComponent,
     NavigationComponent,
     NavbarComponent,
-    SearchWidgetComponent
+    SearchWidgetComponent,
+    StocklistComponent,
+    TechnicalSearchComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FlexLayoutModule,
-    MatButtonModule
+    MatButtonModule,
+    OrderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
