@@ -15,9 +15,27 @@ export class SearchService {
   constructor(private http: HttpClient) { }
 
 
-  findStocksByRsi(gt: string, lt: string){
+  findStocksByRsi(gt: string, lt: string) {
     const params = new HttpParams().set('gt', gt).set('lt', lt);
-    return this.http.get<Technicals[]>(this.endpoint + '/rsi' , { params }).pipe(catchError(this.handleError));
+    return this.http.get<Technicals[]>(this.endpoint + '/rsi', { params }).pipe(catchError(this.handleError));
+  }
+
+
+  search(lessThanRsi: string, greaterThanRsi: string, isAboveSma: boolean, isEmaAboveSma: boolean) {
+    let params = new HttpParams();
+    if (greaterThanRsi !== "" && lessThanRsi !== "") {
+      params = params.set('rsi', 'gt:' + greaterThanRsi + '*' + 'lt:' + lessThanRsi);
+    }
+    else if (greaterThanRsi !== "") {
+      params = params.set('rsi', 'gt:' + greaterThanRsi);
+    }
+    else if (lessThanRsi !== "") {
+      params = params.set('rsi', 'lt:' + lessThanRsi);
+    }
+
+
+    return this.http.get<Technicals[]>(this.endpoint, { params }).pipe(catchError(this.handleError));
+
   }
 
 

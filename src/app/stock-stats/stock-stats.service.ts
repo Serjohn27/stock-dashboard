@@ -8,7 +8,7 @@ import { Technicals } from '../price-quote/technicals';
 })
 export class StockStatsService {
 
-  endpoint = 'http://localhost:8888/data/technicals/';
+  endpoint = 'http://localhost:8888/technicals/';
 
   constructor(private http: HttpClient) { }
 

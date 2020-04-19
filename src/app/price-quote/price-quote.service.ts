@@ -9,7 +9,7 @@ import { throwError } from 'rxjs';
 })
 export class PriceQuoteService {
 
-  endpoint = 'http://localhost:8888/data/';
+  endpoint = 'http://localhost:8888/quotes/';
 
   constructor(private http: HttpClient) { }
 

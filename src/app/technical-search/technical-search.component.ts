@@ -29,7 +29,7 @@ export class TechnicalSearchComponent implements OnInit {
     const lowRsi = this.searchForm.controls.rsiLow.value;
     const highRsi = this.searchForm.controls.rsiHigh.value;
 
-    this.technicals = this.searchService.findStocksByRsi(lowRsi, highRsi);
+    this.technicals = this.searchService.search(highRsi, lowRsi, null, null);
 
   }
 
